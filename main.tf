@@ -29,9 +29,13 @@ resource "azurerm_kubernetes_cluster" "default" {
     zones = ["1", "2", "3"]
   }
 
-  service_principal {
-    client_id     = var.appId
-    client_secret = var.password
+  # service_principal {
+  #   client_id     = var.appId
+  #   client_secret = var.password
+  # }
+
+  identity {
+    type = "SystemAssigned"
   }
 
   role_based_access_control_enabled = true
